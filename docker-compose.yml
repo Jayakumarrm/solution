@@ -1,0 +1,18 @@
+version: '3'
+
+services:
+    node_todo_api:
+        build: ./node_todo_api
+        image: node_todo_api
+    
+    angular_todo:
+        build: ./angular_todo
+        image: angular_todo
+        env_file:
+            - ./angular_todo/appConst.env
+        ports:
+            - "80:80"
+        depends_on:
+            - node_todo_api
+        links:
+            - node_todo_api
